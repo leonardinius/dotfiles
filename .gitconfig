@@ -1,0 +1,44 @@
+[color]
+    ui = true
+  [color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+    upstream = cyan
+  [color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+  [color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[core]
+    autocrlf = true
+
+[user]
+    name = Leonids Maslovs
+    email = leonids.maslovs@galeoconsulting.com
+
+[push]
+    default = simple
+
+[merge]
+    conflictstyle = diff3
+
+[credential]    
+
+[alias]
+     st = status -sb
+     br = branch
+     ls = ls-files
+     stg = log --all --graph --decorate --oneline --abbrev-commit
+
+[credential]
+     helper = !'C:\\Users\\leonids.maslovs\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
+[branch]
+     autosetuprebase = always
+[pull]
+     rebase = true

@@ -1,14 +1,8 @@
 set nocompatible
 filetype off
 
-if has('win32') || has('win64')
-  set rtp+=~/vimfiles/bundle/Vundle.vim
-  let path='~/vimfiles/bundle'
-else
-  set rtp+=~/.vim/bundle/Vundle.vim
-  let path='~/.vim/bundle'
-endif
-
+set rtp+=~/.vim/bundle/Vundle.vim
+let path='~/.vim/bundle'
 call vundle#begin(path)
 
 Plugin 'gmarik/Vundle.vim'
@@ -32,12 +26,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
-" autosave on buffer changes
-Plugin '907th/vim-auto-save'
-
-" autowrap as you type plugin
-Plugin 'reedes/vim-pencil'
-
 " name says it all
 Plugin 'Glench/Vim-Jinja2-Syntax'
 
@@ -45,6 +33,8 @@ Plugin 'DAddYE/soda.vim'
 Plugin 'AlxHnr/clear_colors'
 Plugin 'freeo/vim-kalisi'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/navajo-night'
+Plugin 'vim-scripts/navajo.vim'
 
 call vundle#end()
 
@@ -82,6 +72,8 @@ colorscheme kalisi
 " _gvimrc stuff
 if has("gui_running")
   set guifont=Liberation\ Mono:h10
+else 
+  colorscheme kalisi
 endif
 
 " disable markdown auto folding
@@ -89,3 +81,9 @@ let g:vim_markdown_folding_disabled=1
 
 " display line numbers
 set number
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif

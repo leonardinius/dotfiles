@@ -59,7 +59,7 @@ Plugin 'vim-scripts/zoom.vim'
 Plugin 'gregsexton/gitv'
 
 Plugin 'wting/rust.vim'
-Plugin 'ebfe/vim-racer'
+Plugin 'phildawes/racer'
 
 call vundle#end()
 

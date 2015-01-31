@@ -53,13 +53,14 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'john2x/flatui.vim'
 Plugin 'zefei/cake16'
 
-
 Plugin 'vim-scripts/zoom.vim'
 
 Plugin 'gregsexton/gitv'
 
 Plugin 'wting/rust.vim'
 Plugin 'phildawes/racer'
+
+Plugin 'jszakmeister/vim-togglecursor'
 
 call vundle#end()
 
@@ -99,13 +100,13 @@ map <C-n> :NERDTreeToggle<CR>
 " _gvimrc stuff
 if has("gui_running")
   set guifont=Liberation\ Mono:h10
-  colorscheme seoul256
-  set background=light
+  colorscheme clear_colors_dark
+  set background=dark
   let g:airline_theme='kalisi'
 else
-  colorscheme solarized
+  colorscheme ron
   set background=dark
-  let g:airline_theme='solarized'
+  let g:airline_theme='dark'
 endif
 
 " disable markdown auto folding

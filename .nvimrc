@@ -106,7 +106,7 @@ if has("gui_running")
   let g:airline_theme='kalisi'
 else
   colorscheme cake16
-  set background=dark
+  set background=light
   let g:airline_theme='kalisi'
 endif
 

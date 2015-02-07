@@ -11,56 +11,56 @@ endif
 
 call vundle#begin(path)
 
-Plugin 'gmarik/Vundle.vim'
+  Plugin 'gmarik/Vundle.vim'
 
-" git support, status bar
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
+  " git support, status bar
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'airblade/vim-gitgutter'
 
-" common sense vim seetings (backspace key etc ..)
-Plugin 'tpope/vim-sensible'
-" Makes . repeat last map not only last command
-Plugin 'tpope/vim-repeat'
+  " airline below
+  Plugin 'bling/vim-airline'
 
-" file panel
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+  " common sense vim seetings (backspace key etc ..)
+  Plugin 'tpope/vim-sensible'
+  " Makes . repeat last map not only last command
+  Plugin 'tpope/vim-repeat'
 
-" file search/lookup
-Plugin 'kien/ctrlp.vim'
+  " file panel
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'jistr/vim-nerdtree-tabs'
+  " file search/lookup
+  Plugin 'kien/ctrlp.vim'
+  " autosave on buffer changes
+  Plugin '907th/vim-auto-save'
+  " autowrap as you type plugin
+  Plugin 'reedes/vim-pencil'
+  " zooms on + / -
+  Plugin 'vim-scripts/zoom.vim'
+  " cursor enchancement
+  Plugin 'jszakmeister/vim-togglecursor'
+  " rust auto complete support
+  Plugin 'phildawes/racer'
+  " editorconfig support (google it)
+  Plugin 'editorconfig/editorconfig-vim'
 
-" better markdown support
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+  " better markdown support
+  Plugin 'godlygeek/tabular'
+  Plugin 'plasticboy/vim-markdown'
+  " Rust syntax
+  Plugin 'wting/rust.vim'
+  " name says it all
+  Plugin 'Glench/Vim-Jinja2-Syntax'
 
-" autosave on buffer changes
-Plugin '907th/vim-auto-save'
 
-" autowrap as you type plugin
-Plugin 'reedes/vim-pencil'
-
-" name says it all
-Plugin 'Glench/Vim-Jinja2-Syntax'
-
-Plugin 'DAddYE/soda.vim'
-Plugin 'AlxHnr/clear_colors'
-Plugin 'freeo/vim-kalisi'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/navajo-night'
-Plugin 'vim-scripts/navajo.vim'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'john2x/flatui.vim'
-Plugin 'zefei/cake16'
-
-Plugin 'vim-scripts/zoom.vim'
-
-Plugin 'gregsexton/gitv'
-
-Plugin 'wting/rust.vim'
-Plugin 'phildawes/racer'
-
-Plugin 'jszakmeister/vim-togglecursor'
+  "Plugin 'DAddYE/soda.vim'
+  "Plugin 'AlxHnr/clear_colors'
+  Plugin 'freeo/vim-kalisi'
+  "Plugin 'altercation/vim-colors-solarized'
+  "Plugin 'vim-scripts/navajo-night'
+  "Plugin 'vim-scripts/navajo.vim'
+  "Plugin 'junegunn/seoul256.vim'
+  "Plugin 'john2x/flatui.vim'
+  Plugin 'zefei/cake16'
 
 call vundle#end()
 
@@ -69,7 +69,8 @@ syntax on
 
 set spell
 set tabstop=2 shiftwidth=2 expandtab
-"set textwidth=79
+"set textwidth=80
+set colorcolumn=81
 set formatoptions+=t
 
 " Display tabs and trailing spaces visually
@@ -100,13 +101,13 @@ map <C-n> :NERDTreeToggle<CR>
 " _gvimrc stuff
 if has("gui_running")
   set guifont=Liberation\ Mono:h10
-  colorscheme clear_colors_dark
-  set background=dark
+  colorscheme cake16
+  set background=light
   let g:airline_theme='kalisi'
 else
-  colorscheme ron
+  colorscheme cake16
   set background=dark
-  let g:airline_theme='dark'
+  let g:airline_theme='kalisi'
 endif
 
 " disable markdown auto folding

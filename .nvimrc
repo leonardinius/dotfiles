@@ -43,6 +43,8 @@ call vundle#begin(path)
   " editorconfig support (google it)
   Plugin 'editorconfig/editorconfig-vim'
 
+  Plugin 'scrooloose/syntastic'
+
   " better markdown support
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
@@ -50,7 +52,6 @@ call vundle#begin(path)
   Plugin 'wting/rust.vim'
   " name says it all
   Plugin 'Glench/Vim-Jinja2-Syntax'
-
 
   "Plugin 'DAddYE/soda.vim'
   "Plugin 'AlxHnr/clear_colors'
@@ -103,11 +104,15 @@ if has("gui_running")
   set guifont=Liberation\ Mono:h10
   colorscheme cake16
   set background=light
-  let g:airline_theme='kalisi'
+  let g:airline_theme='base16'
+  set guioptions-=m  "remove menu bar
+  set guioptions-=T  "remove toolbar
+  "set guioptions-=r  "remove right-hand scroll bar
+  "set guioptions-=L  "remove left-hand scroll bar
 else
   colorscheme cake16
   set background=light
-  let g:airline_theme='kalisi'
+  let g:airline_theme='base16'
 endif
 
 " disable markdown auto folding

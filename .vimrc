@@ -104,7 +104,7 @@ if has("gui_running")
   set guifont=Liberation\ Mono:h10
   colorscheme cake16
   set background=light
-  let g:airline_theme='base16'
+  let g:airline_theme='solarized'
   set guioptions-=m  "remove menu bar
   set guioptions-=T  "remove toolbar
   "set guioptions-=r  "remove right-hand scroll bar
@@ -127,3 +127,8 @@ if has("autocmd")
    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 2
+let g:auto_save_postsave_hook="SyntasticCheck"

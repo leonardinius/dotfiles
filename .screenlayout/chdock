@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# toggles the external monitor on/off in specified direction
+IN="LVDS1"
+EXT1="VGA1"
+EXT2="DP1"
+
+function connected {
+  xrandr | grep "$1 connected"
+}
+
+function disconnected {
+  xrandr | grep "$1 disconnected"
+}
+
+if (connected $IN && connected $EXT1 && connected $EXT2); then
+    ~/.screenlayout/pre-work.sh
+    ~/.screenlayout/work.sh
+elif (connected $IN && connected $EXT1 && disconnected $EXT2); then
+    ~/.screenlayout/pre-work.sh
+else
+    ~/.screenlayout/laptop-only.sh
+fi

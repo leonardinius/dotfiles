@@ -43,24 +43,28 @@ call vundle#begin(path)
   " editorconfig support (google it)
   Plugin 'editorconfig/editorconfig-vim'
 
-  Plugin 'scrooloose/syntastic'
+"  " VIM default syntax checker
+"  Plugin 'scrooloose/syntastic'
+  " Nvim asynchronous make / syntax check
+  Plugin 'benekastah/neomake'
 
   " better markdown support
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
+
   " Rust syntax
   Plugin 'wting/rust.vim'
   " name says it all
   Plugin 'Glench/Vim-Jinja2-Syntax'
 
-  "Plugin 'DAddYE/soda.vim'
-  "Plugin 'AlxHnr/clear_colors'
+  Plugin 'DAddYE/soda.vim'
+  Plugin 'AlxHnr/clear_colors'
   Plugin 'freeo/vim-kalisi'
-  "Plugin 'altercation/vim-colors-solarized'
-  "Plugin 'vim-scripts/navajo-night'
-  "Plugin 'vim-scripts/navajo.vim'
-  "Plugin 'junegunn/seoul256.vim'
-  "Plugin 'john2x/flatui.vim'
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'vim-scripts/navajo-night'
+  Plugin 'vim-scripts/navajo.vim'
+  Plugin 'junegunn/seoul256.vim'
+  Plugin 'john2x/flatui.vim'
   Plugin 'zefei/cake16'
 
 call vundle#end()
@@ -93,16 +97,15 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 let g:nerdtree_tabs_open_on_console_startup = 0
 set autochdir
 let NERDTreeChDirMode=2
-autocmd vimenter * if !argc() | NERDTree . | NERDTreeClose | endif
+"autocmd vimenter * if !argc() | NERDTree . | NERDTreeClose | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <C-n> :NERDTreeToggle<CR>
 
 " colorscheme
-
 " _gvimrc stuff
 if has("gui_running")
   set guifont=Liberation\ Mono:h10
-  colorscheme cake16
+  colorscheme clear_colors_light
   set background=light
   let g:airline_theme='solarized'
   set guioptions-=m  "remove menu bar
@@ -110,7 +113,9 @@ if has("gui_running")
   "set guioptions-=r  "remove right-hand scroll bar
   "set guioptions-=L  "remove left-hand scroll bar
 else
-  colorscheme cake16
+  let $COLORTERM = "xterm-256color"
+  set t_Co=256
+  colorscheme clear_colors_light
   set background=light
   let g:airline_theme='base16'
 endif
@@ -127,8 +132,37 @@ if has("autocmd")
    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 2
-let g:auto_save_postsave_hook="SyntasticCheck"
+" let g:syntastic_aggregate_errors = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 2
+" let g:auto_save_postsave_hook="SyntasticCheck"
+
+" Let's try neomake on rust ON by default
+autocmd! BufWritePost *.rs Neomake
+
+" Enable Nvim TUI true color
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+tnoremap <A-`> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>hi
+tnoremap <A-j> <C-\><C-n><C-w>ji
+tnoremap <A-k> <C-\><C-n><C-w>ki
+tnoremap <A-l> <C-\><C-n><C-w>li
+tnoremap <A-t> <C-\><C-n>:tabnew +terminal<cr>cd<cr>
+tnoremap <C-PageUp> <C-\><C-n><C-PageUp>
+tnoremap <C-PageDown> <C-\><C-n><C-PageDown>
+
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+noremap  <A-t> :tabnew<cr>
+
+set splitbelow
+set splitright
+
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"

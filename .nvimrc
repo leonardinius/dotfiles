@@ -1,73 +1,70 @@
 set nocompatible
 filetype off
 
-if has('win32') || has('win64')
-  set rtp+=~/vimfiles/bundle/Vundle.vim
-  let path='~/vimfiles/bundle'
-else
-  set rtp+=~/.vim/bundle/Vundle.vim
-  let path='~/.vim/bundle'
-endif
+call plug#begin('~/.nvim/plugged')
 
-call vundle#begin(path)
-
-  Plugin 'gmarik/Vundle.vim'
+  Plug 'gmarik/Vundle.vim'
 
   " git support, status bar
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
 
   " airline below
-  Plugin 'bling/vim-airline'
+  Plug 'bling/vim-airline'
 
   " common sense vim seetings (backspace key etc ..)
-  Plugin 'tpope/vim-sensible'
+  Plug 'tpope/vim-sensible'
   " Makes . repeat last map not only last command
-  Plugin 'tpope/vim-repeat'
+  Plug 'tpope/vim-repeat'
 
   " file panel
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'jistr/vim-nerdtree-tabs'
+  Plug 'scrooloose/nerdtree'
+  Plug 'jistr/vim-nerdtree-tabs'
   " file search/lookup
-  Plugin 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
   " autosave on buffer changes
-  Plugin '907th/vim-auto-save'
+  Plug '907th/vim-auto-save'
   " autowrap as you type plugin
-  Plugin 'reedes/vim-pencil'
+  Plug 'reedes/vim-pencil'
   " zooms on + / -
-  Plugin 'vim-scripts/zoom.vim'
+  Plug 'vim-scripts/zoom.vim'
   " cursor enchancement
-  Plugin 'jszakmeister/vim-togglecursor'
-  " rust auto complete support
-  Plugin 'phildawes/racer'
+  Plug 'jszakmeister/vim-togglecursor'
   " editorconfig support (google it)
-  Plugin 'editorconfig/editorconfig-vim'
+  Plug 'editorconfig/editorconfig-vim'
 
-"  " VIM default syntax checker
-"  Plugin 'scrooloose/syntastic'
+  " rust auto complete support
+  Plug 'phildawes/racer'
   " Nvim asynchronous make / syntax check
-  Plugin 'benekastah/neomake'
+  Plug 'benekastah/neomake'
+  " Ctags support, including Rust
+  Plug 'majutsushi/tagbar'
+  " Autocomplete
+  Plug 'Shougo/deoplete.nvim'
 
   " better markdown support
-  Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
 
   " Rust syntax
-  Plugin 'wting/rust.vim'
+  Plug 'wting/rust.vim'
   " name says it all
-  Plugin 'Glench/Vim-Jinja2-Syntax'
+  Plug 'Glench/Vim-Jinja2-Syntax'
 
-  Plugin 'DAddYE/soda.vim'
-  Plugin 'AlxHnr/clear_colors'
-  Plugin 'freeo/vim-kalisi'
-  Plugin 'altercation/vim-colors-solarized'
-  Plugin 'vim-scripts/navajo-night'
-  Plugin 'vim-scripts/navajo.vim'
-  Plugin 'junegunn/seoul256.vim'
-  Plugin 'john2x/flatui.vim'
-  Plugin 'zefei/cake16'
+  Plug 'DAddYE/soda.vim'
+  Plug 'AlxHnr/clear_colors'
+  Plug 'freeo/vim-kalisi'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'vim-scripts/navajo-night'
+  Plug 'vim-scripts/navajo.vim'
+  Plug 'junegunn/seoul256.vim'
+  Plug 'john2x/flatui.vim'
+  Plug 'zefei/cake16'
+  Plug 'fxn/vim-monochrome'
+  Plug 'nemesit/vim-colors-fukurokujopro'
+  "Plug 'chriskempson/base16-vim'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax on
@@ -85,11 +82,6 @@ set list listchars=tab:\ \ ,trail:·
 set wildmode=longest,full
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-
-" rust complete integration
-set hidden
-let g:racer_cmd = "/usr/local/bin/racer"
-let $RUST_SRC_PATH="/usr/local/src/rust/src"
 
 " nerdtree staff
 let g:NERDTreeDirArrows=0
@@ -115,8 +107,8 @@ if has("gui_running")
 else
   let $COLORTERM = "xterm-256color"
   set t_Co=256
-  colorscheme clear_colors_light
-  set background=light
+  colorscheme seoul256
+  set background=dark
   let g:airline_theme='base16'
 endif
 
@@ -132,19 +124,12 @@ if has("autocmd")
    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" let g:syntastic_aggregate_errors = 1
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 2
-" let g:auto_save_postsave_hook="SyntasticCheck"
-
-" Let's try neomake on rust ON by default
-autocmd! BufWritePost *.rs Neomake
-
 " Enable Nvim TUI true color
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Make Pynvim to paste clipboard content in _edit_ mode
+inoremap <S-Insert> <Esc>"+pi
 
 tnoremap <A-`> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>hi
@@ -154,6 +139,12 @@ tnoremap <A-l> <C-\><C-n><C-w>li
 tnoremap <A-t> <C-\><C-n>:tabnew +terminal<cr>cd<cr>
 tnoremap <C-PageUp> <C-\><C-n><C-PageUp>
 tnoremap <C-PageDown> <C-\><C-n><C-PageDown>
+"disable terminal spell
+au TermOpen * setlocal mouse=
+au TermOpen * setlocal nospell
+au TermOpen * setlocal nocursorline
+au TermOpen * setlocal nocursorcolumn
+au TermOpen * setlocal nolist
 
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
@@ -164,5 +155,39 @@ noremap  <A-t> :tabnew<cr>
 set splitbelow
 set splitright
 
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"set mouse=a
+
+" Let's try neomake on rust ON by default
+autocmd! BufWritePost *.rs Neomake
+
+" rust complete integration
+set hidden
+let g:racer_cmd = "/usr/local/bin/racer"
+let $RUST_SRC_PATH="/usr/local/src/rustc-nightly/src"
+autocmd FileType rust nnoremap <F3> :call RacerGoToDefinition()<CR>
+autocmd FileType rust nnoremap <S-F3> 2<C-O>
+autocmd FileType rust inoremap <C-Space> <C-x><C-o>
+autocmd FileType rust inoremap <C-@> <C-Space>
+
+let g:deoplete#enable_at_startup = 1
+
+" Adds Neovim Proof-of-concept debugger support
+" source ~/.vim/autoload/neovim_gdb.vim
+
+" Adds Tagbar shortcut and Rust support
+autocmd FileType rust nnoremap <Leader>/ :TagbarToggle<CR>
+autocmd FileType rust nnoremap <Leader>. :CtrlPTag<CR>
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+

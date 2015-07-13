@@ -1,69 +1,61 @@
 set nocompatible
 filetype off
 
-if has('win32') || has('win64')
-  set rtp+=~/vimfiles/bundle/Vundle.vim
-  let path='~/vimfiles/bundle'
-else
-  set rtp+=~/.vim/bundle/Vundle.vim
-  let path='~/.vim/bundle'
-endif
+call plug#begin('~/.vim/plugged')
 
-call vundle#begin(path)
-
-  Plugin 'gmarik/Vundle.vim'
+  Plug 'gmarik/Vundle.vim'
 
   " git support, status bar
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
 
   " airline below
-  Plugin 'bling/vim-airline'
+  Plug 'bling/vim-airline'
 
   " common sense vim seetings (backspace key etc ..)
-  Plugin 'tpope/vim-sensible'
+  Plug 'tpope/vim-sensible'
   " Makes . repeat last map not only last command
-  Plugin 'tpope/vim-repeat'
+  Plug 'tpope/vim-repeat'
 
   " file panel
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'jistr/vim-nerdtree-tabs'
+  Plug 'scrooloose/nerdtree'
+  Plug 'jistr/vim-nerdtree-tabs'
   " file search/lookup
-  Plugin 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
   " autosave on buffer changes
-  Plugin '907th/vim-auto-save'
+  Plug '907th/vim-auto-save'
   " autowrap as you type plugin
-  Plugin 'reedes/vim-pencil'
+  Plug 'reedes/vim-pencil'
   " zooms on + / -
-  Plugin 'vim-scripts/zoom.vim'
+  Plug 'vim-scripts/zoom.vim'
   " cursor enchancement
-  Plugin 'jszakmeister/vim-togglecursor'
+  Plug 'jszakmeister/vim-togglecursor'
   " rust auto complete support
-  Plugin 'phildawes/racer'
+  Plug 'phildawes/racer'
   " editorconfig support (google it)
-  Plugin 'editorconfig/editorconfig-vim'
+  Plug 'editorconfig/editorconfig-vim'
 
-  Plugin 'scrooloose/syntastic'
+  Plug 'scrooloose/syntastic'
 
   " better markdown support
-  Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
   " Rust syntax
-  Plugin 'wting/rust.vim'
+  Plug 'wting/rust.vim'
   " name says it all
-  Plugin 'Glench/Vim-Jinja2-Syntax'
+  Plug 'Glench/Vim-Jinja2-Syntax'
 
-  "Plugin 'DAddYE/soda.vim'
-  "Plugin 'AlxHnr/clear_colors'
-  Plugin 'freeo/vim-kalisi'
-  "Plugin 'altercation/vim-colors-solarized'
-  "Plugin 'vim-scripts/navajo-night'
-  "Plugin 'vim-scripts/navajo.vim'
-  "Plugin 'junegunn/seoul256.vim'
-  "Plugin 'john2x/flatui.vim'
-  Plugin 'zefei/cake16'
+  "Plug 'DAddYE/soda.vim'
+  "Plug 'AlxHnr/clear_colors'
+  Plug 'freeo/vim-kalisi'
+  "Plug 'altercation/vim-colors-solarized'
+  "Plug 'vim-scripts/navajo-night'
+  "Plug 'vim-scripts/navajo.vim'
+  "Plug 'junegunn/seoul256.vim'
+  "Plug 'john2x/flatui.vim'
+  Plug 'zefei/cake16'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax on

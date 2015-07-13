@@ -27,7 +27,8 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec stterm -e /home/leonids/.linuxbrew/bin/nvim +":colorscheme seoul256-light"  +":terminal $SHELL"
+bindsym $mod+Return exec st
+#bindsym $mod+Return exec st -e /home/leonids/.linuxbrew/bin/nvim +"colorscheme seoul256" +"terminal $SHELL"
 #bindsym $mod+Return exec env PATH="$PATH:/home/leonids/.linuxbrew/bin" /usr/local/bin/pynvim +":colorscheme clear_colors_light"  +":terminal $SHELL"
 
 # kill focused window
@@ -244,3 +245,6 @@ exec_always --no-startup-id nm-applet
 # Dock station support 
 # will auto-configure monitors on i3 restart
 exec_always --no-startup-id ~/.screenlayout/chdock
+
+#Disables touchpad
+exec_always --no-startup-id ~/.touchpad/disable_touchpad.sh

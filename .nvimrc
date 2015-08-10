@@ -1,9 +1,10 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.nvim/plugged')
+" Plugin manager
+" https://github.com/junegunn/vim-plug
 
-  Plug 'gmarik/Vundle.vim'
+call plug#begin('~/.nvim/plugged')
 
   " git support, status bar
   Plug 'tpope/vim-fugitive'
@@ -96,19 +97,20 @@ map <C-n> :NERDTreeToggle<CR>
 " colorscheme
 " _gvimrc stuff
 if has("gui_running")
-  set guifont=Liberation\ Mono:h10
-  colorscheme clear_colors_light
+  "set guifont=Liberation\ Mono:h10
+  set guifont=Droid\ Sans\ Mono\ 10
+  colorscheme soda
   set background=light
   let g:airline_theme='solarized'
   set guioptions-=m  "remove menu bar
   set guioptions-=T  "remove toolbar
-  "set guioptions-=r  "remove right-hand scroll bar
-  "set guioptions-=L  "remove left-hand scroll bar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
 else
   let $COLORTERM = "xterm-256color"
   set t_Co=256
-  colorscheme seoul256
-  set background=dark
+  colorscheme soda
+  set background=light
   let g:airline_theme='base16'
 endif
 
@@ -121,7 +123,7 @@ set number
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
-   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Enable Nvim TUI true color
@@ -131,20 +133,22 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 " Make Pynvim to paste clipboard content in _edit_ mode
 inoremap <S-Insert> <Esc>"+pi
 
-tnoremap <A-`> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>hi
-tnoremap <A-j> <C-\><C-n><C-w>ji
-tnoremap <A-k> <C-\><C-n><C-w>ki
-tnoremap <A-l> <C-\><C-n><C-w>li
-tnoremap <A-t> <C-\><C-n>:tabnew +terminal<cr>cd<cr>
-tnoremap <C-PageUp> <C-\><C-n><C-PageUp>
-tnoremap <C-PageDown> <C-\><C-n><C-PageDown>
-"disable terminal spell
-au TermOpen * setlocal mouse=
-au TermOpen * setlocal nospell
-au TermOpen * setlocal nocursorline
-au TermOpen * setlocal nocursorcolumn
-au TermOpen * setlocal nolist
+if has("tnoremap")
+  tnoremap <A-`> <C-\><C-n>
+  tnoremap <A-h> <C-\><C-n><C-w>hi
+  tnoremap <A-j> <C-\><C-n><C-w>ji
+  tnoremap <A-k> <C-\><C-n><C-w>ki
+  tnoremap <A-l> <C-\><C-n><C-w>li
+  tnoremap <A-t> <C-\><C-n>:tabnew +terminal<cr>cd<cr>
+  tnoremap <C-PageUp> <C-\><C-n><C-PageUp>
+  tnoremap <C-PageDown> <C-\><C-n><C-PageDown>
+  "disable terminal spell
+  au TermOpen * setlocal mouse=
+  au TermOpen * setlocal nospell
+  au TermOpen * setlocal nocursorline
+  au TermOpen * setlocal nocursorcolumn
+  au TermOpen * setlocal nolist
+endif
 
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
@@ -155,7 +159,7 @@ noremap  <A-t> :tabnew<cr>
 set splitbelow
 set splitright
 
-"set mouse=a
+set mouse=a
 
 " Let's try neomake on rust ON by default
 autocmd! BufWritePost *.rs Neomake

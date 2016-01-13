@@ -12,7 +12,6 @@ libreoffice-gnome
 mogrify
 neovim
 notify-osd
-notifyosdconfig
 nvim
 pass
 pavucontrol

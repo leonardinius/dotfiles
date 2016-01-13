@@ -4,7 +4,7 @@ filetype off
 " Plugin manager
 " https://github.com/junegunn/vim-plug
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
   " git support, status bar
   Plug 'tpope/vim-fugitive'
@@ -17,6 +17,7 @@ call plug#begin('~/.nvim/plugged')
   Plug 'tpope/vim-sensible'
   " Makes . repeat last map not only last command
   Plug 'tpope/vim-repeat'
+
 
   " file panel
   Plug 'scrooloose/nerdtree'

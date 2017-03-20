@@ -223,8 +223,8 @@ bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
 bindSym XF86AudioMicMute exec amixer -D default set Capture toggle
 
 # sleep / screen dimming
-exec --no-startup-id xset dpms 300 600 900
-exec --no-startup-id xautolock -time 5 -locker ~/.i3/i3lock.sh
+exec --no-startup-id xset dpms 285 600 900
+exec --no-startup-id xautolock -time 5 -locker ~/.i3/i3lock.sh -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'
 bindsym $mod+Mod1+l exec ~/.i3/i3lock.sh
 bindsym XF86Sleep exec ~/.i3/i3lock.sh
 bindsym Control+XF86Sleep exit

@@ -15,9 +15,11 @@ xrandr \
 --output HDMI1 \
 --off \
 --output LVDS1 \
---primary \
 --mode 1366x768 \
---pos 0x0 \
+--pos 1920x0 \
 --rotate normal \
 --output VGA1 \
---off
+--mode 1920x1080 \
+--pos 0x0 \
+--rotate normal
+

@@ -7,7 +7,10 @@ xrandr \
 --output DP2 \
 --off \
 --output DP1 \
---off \
+--primary \
+--mode 2560x1080 \
+--pos 1920x0 \
+--rotate normal \
 --output HDMI3 \
 --off \
 --output HDMI2 \
@@ -15,9 +18,8 @@ xrandr \
 --output HDMI1 \
 --off \
 --output LVDS1 \
---primary \
---mode 1366x768 \
---pos 0x0 \
---rotate normal \
+--off \
 --output VGA1 \
---off
+--mode 1920x1080 \
+--pos 0x0 \
+--rotate normal

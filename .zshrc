@@ -45,40 +45,15 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gpg-agent git "command-not-found" "vi-mode")
+
+plugins+=(command-not-found vi-mode gitfast docker docker-compose cp vagrant gpg-agent terraform)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/leonids/.local/bin/:/home/leonids/.linuxbrew/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/leonids/.local/bin/"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-#export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 
 export LC_ALL=en_US.UTF-8
 
@@ -87,8 +62,31 @@ export EDITOR=nvim
 # vim-mode configuration
 MODE_INDICATOR="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
 bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
 
 # export TERM=xterm
 export ANSIBLE_INVENTORY=~/.ansible_hosts
 
 fpath=(~/.zsh/completions $fpath)
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+unalias gb
+
+alias esudo='sudo -E'
+
+export ENV_JENKINS_URL="http://10.104.20.13:10280"
+export MVN_HOME=~/tools/apache-maven-3.3.9
+export PATH="${MVN_HOME}/bin:${PATH}"
+
+source ~/tools/autoenv/activate.sh
+source /etc/profile.d/vte.sh
+
+source <(kubectl completion zsh)
+#source <(minikube completion zsh)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#eval $(gpg-agent --daemon --homedir /home/leonids/.gnupg 2>/dev/null)
+

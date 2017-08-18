@@ -157,7 +157,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # reboot / etc shortcuts
-mode "(s)leep, (h)ybernate, (p)owersave, (r)estart, shut(d)own?" {
+mode "(s)leep, (h)ybernate, (p)owersave, (r)eboot, shut(d)own?" {
     bindsym s exec ~/.i3/i3lock.sh && sudo pm-suspend; mode "default"
     bindsym h exec ~/.i3/i3lock.sh && sudo pm-hibernate; mode "default"
     bindsym p exec sudo pm-powersave; mode "default"
@@ -167,7 +167,8 @@ mode "(s)leep, (h)ybernate, (p)owersave, (r)estart, shut(d)own?" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+n mode "(s)leep, (h)ybernate, (p)owersave, (r)estart, shut(d)own?"
+
+bindsym $mod+n mode "(s)leep, (h)ybernate, (p)owersave, (r)eboot, shut(d)own?"
 
 # caps mode (visual helper)
 mode "Caps" {
@@ -202,7 +203,8 @@ font pango: M+ 1m, FontAwesome, Ionicons, 10
 # start tray applications
 
 bar {
-  #tray_output DP1
+  id primary
+  tray_output primary
   status_command i3status --config ~/.i3/i3status.config
   position top
   colors {
@@ -223,22 +225,24 @@ bindsym XF86AudioMute exec amixer -D pulse -q set Master toggle
 bindSym XF86AudioMicMute exec amixer -D default set Capture toggle
 
 # sleep / screen dimming
-exec --no-startup-id xset dpms 285 600 900
-exec --no-startup-id xautolock -time 5 -locker ~/.i3/i3lock.sh -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'
+exec --no-startup-id xset dpms 295 600 900
+exec --no-startup-id xautolock -time 5 -locker $(ls ~/.i3/i3lock.sh) -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 bindsym $mod+Mod1+l exec ~/.i3/i3lock.sh
 bindsym XF86Sleep exec ~/.i3/i3lock.sh
 bindsym Control+XF86Sleep exit
 
 # wallpaper
-#exec --no-startup-id feh --bg-scale /home/leonids/Downloads/wallpapper_rain_4_891426_651363771664580_1106542921_n.jpg
+exec --no-startup-id feh --bg-scale --stretch /usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png
 
 # application startup
 #exec --no-startup-id i3-msg 'workspace 2; exec --no-startup-id thunderbird'
-exec --no-startup-id ibus-daemon --replace --daemonize --xim --restart
-exec --no-startup-id skype
+exec_always --no-startup-id ibus-daemon --replace --daemonize --xim --restart
 exec_always --no-startup-id dropbox start
+exec_always --no-startup-id /usr/bin/skypeforlinux
+#exec_always --no-startup-id /usr/bin/sky
 exec_always --no-startup-id syncthing-gtk
-exec_always --no-startup-id bash -i -c 'qtpass'
+#exec_always --no-startup-id rescuetime
+exec_always rescuetime
 # starting network manager
 exec_always --no-startup-id nm-applet
 
@@ -249,6 +253,10 @@ exec_always --no-startup-id ~/.screenlayout/chdock
 #Disables touchpad
 exec_always --no-startup-id ~/.touchpad/disable_touchpad.sh
 
+exec_always --no-startup-id setxkbmap -option caps:none
+
 
 # fix notifications window
-# for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle;
+for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
+for_window [class="Dunst"] floating enable; border none; focus mode_toggle
+

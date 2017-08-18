@@ -116,9 +116,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$PATH:/home/leonids/.linuxbrew/bin"
-
 export LC_ALL=en_US.UTF-8
 
-eval $(gpg-agent --daemon)
+# eval $(gpg-agent --daemon)
 
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+alias esudo='sudo -E'
+
+source ~/tools/autoenv/activate.sh
+source /etc/profile.d/vte.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

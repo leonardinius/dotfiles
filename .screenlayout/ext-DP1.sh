@@ -7,7 +7,9 @@ xrandr \
 --output DP2 \
 --off \
 --output DP1 \
---off \
+--mode 2560x1080 \
+--pos 1366x0 \
+--rotate normal \
 --output HDMI3 \
 --off \
 --output HDMI2 \

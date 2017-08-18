@@ -14,10 +14,19 @@ function disconnected {
 }
 
 if (connected $IN && connected $EXT1 && connected $EXT2); then
-    ~/.screenlayout/pre-work.sh
-    ~/.screenlayout/work.sh
+    ~/.screenlayout/pre-ext.sh
+    ~/.screenlayout/ext-all.sh
 elif (connected $IN && connected $EXT1 && disconnected $EXT2); then
-    ~/.screenlayout/pre-work.sh
+    ~/.screenlayout/pre-ext.sh
+    ~/.screenlayout/ext-${EXT1}.sh
+elif (connected $IN && disconnected $EXT1 && connected $EXT2); then
+    ~/.screenlayout/pre-ext.sh
+    ~/.screenlayout/ext-${EXT2}.sh
 else
     ~/.screenlayout/laptop-only.sh
 fi
+
+pkill -f nm-applet
+
+nohup nm-applet 2>&1 >/dev/null &
+
